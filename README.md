@@ -9,7 +9,7 @@ A random word generator along with a word search that provides an English transl
 - Merriam-Webster Dictionary API - https://www.dictionaryapi.com/
 
 ### Wireframes
-null
+-https://www.figma.com/file/ioK9TGer9GeksjWlNBxs6V/Dictionary-API-Project?t=1uZT1sjKcTkypOGh-6
 
 ### MVP
 - Fetch API
