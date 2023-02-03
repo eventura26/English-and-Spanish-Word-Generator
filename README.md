@@ -1,4 +1,4 @@
-# English-and-Spanish-Word-Generator
+# English and Spanish Word Generator
 
 ## Project Overview
 
