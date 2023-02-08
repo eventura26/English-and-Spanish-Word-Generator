@@ -1,14 +1,20 @@
 let searchBtn = document.querySelector(`#search-btn`)
 let randomBtn = document.querySelector(`#random-btn`)
-let definitionPop = document.querySelector(`#definition-pop`)
 let saveBtn = document.querySelector(`#save-btn`)
+let definitionPop = document.querySelector(`#definition-pop`)
+let wordBank = document.querySelector(`#word-bank`)
 let keyOne = "059db44f-08b8-4243-b66d-5379a06a78b5"
 let keySp = "e2b01471-48df-4301-8ab2-aee32aef513c"
 
+let textInput = ''
+
+let wordSearched = document.getElementById(`word-searched`)
+let wordDefined = document.getElementById(`definition`)
+let secondDefinition = document.getElementById(`definition-two`)
+let imgBox = document.getElementById(`img-box`)
 
 
 async function getData(event){
-    let textInput = ''
     event.preventDefault() 
     textInput = document.querySelector(`#search-bar`).value
     const imgUrl = `https://www.merriam-webster.com/assets/mw/static/art/dict/${textInput}.gif`
@@ -19,18 +25,12 @@ async function getData(event){
     .then(res => {return res.json()})
     .then(res =>{
         console.log(res)
-        let wordSearched = document.getElementById(`word-searched`)
-        let wordDefined = document.getElementById(`definition`)
-        let secondDefinition = document.getElementById(`definition-two`)
-        let imgBox = document.getElementById(`img-box`)
         wordSearched.innerText = ` English: ${res[0].hwi.hw} - ${res[0].fl}`
         wordDefined.innerText = `1: ${res[0].shortdef[0]}`
         secondDefinition.innerText = `2: ${res[2].shortdef[0]}`
         imgBox.innerHTML = `<img src=${imgUrl} height='220px'>`
         definitionPop.style.opacity = "1"
         imgBox.style.opacity = "1"
-      
-
     })
     .catch(err =>{console.log(`error~`,err)})
     
@@ -46,6 +46,11 @@ async function getData(event){
     })
     .catch(errSp => {console.log(`error!`,errSp) })
 
+    saveBtn.addEventListener(`click`, () =>{ 
+        localStorage.setItem("word", textInput)
+        displayWordBank()
+    
+    })
 }
 
 // "random" word gen
@@ -65,10 +70,6 @@ async function getRandom(event){
     .then(res =>{
       
         console.log(res)
-        let wordSearched = document.getElementById(`word-searched`)
-        let wordDefined = document.getElementById(`definition`)
-        let secondDefinition = document.getElementById(`definition-two`)
-        let imgBox = document.getElementById(`img-box`)
         wordSearched.innerText = ` English: ${res[0].hwi.hw} - ${res[0].fl}`
         wordDefined.innerText = `1: ${res[0].shortdef[0]}`
         secondDefinition.innerText = `2: ${res[2].shortdef[0]}`
@@ -93,10 +94,20 @@ async function getRandom(event){
     })
     .catch(errSp => {console.log(`error!`,errSp) })
 
-
+    saveBtn.addEventListener(`click`, () =>{ 
+        localStorage.setItem("word", textInput)
+        displayWordBank()
+    
+    })
 }
 
+function displayWordBank(){
+    if(localStorage.getItem("word")){
+        const savedWord = localStorage.getItem("word")
+        wordBank.innerText = savedWord
+}}
 
+displayWordBank()
 
 searchBtn.onclick = getData
 randomBtn.onclick = getRandom
