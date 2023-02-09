@@ -3,7 +3,7 @@
 ## Project Overview
 
 ### Project Description
-A random word generator along with a word search that provides an English translation of a Spanish word and vice-versa.
+A word search along with random word generator that provides an Spanish translation of a English word.
 
 ### API and Data Sample 
 - Merriam-Webster Dictionary API - https://www.dictionaryapi.com/
