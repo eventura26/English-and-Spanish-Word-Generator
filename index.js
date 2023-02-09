@@ -7,6 +7,7 @@ let keyOne = "059db44f-08b8-4243-b66d-5379a06a78b5"
 let keySp = "e2b01471-48df-4301-8ab2-aee32aef513c"
 
 let textInput = ''
+let spTranslation = ''
 
 let wordSearched = document.getElementById(`word-searched`)
 let wordDefined = document.getElementById(`definition`)
@@ -34,14 +35,15 @@ async function getData(event){
     })
     .catch(err =>{console.log(`error~`,err)})
     
-    spTranslation = ``
+
 
 //spanish api req below
     fetch(urlSp)
     .then(resSp => {return resSp.json()}) 
     .then(resSp => {
         console.log(resSp)
-       let spTranslation = document.getElementById(`sp-trans`)
+        let spTranslation = document.getElementById(`sp-trans`)
+        spTranslation.innerText = ''
         spTranslation.innerText = `Spanish: 1. ${resSp[0].shortdef[0]} 2. ${resSp[1].shortdef[0]}`
     })
     .catch(errSp => {console.log(`error!`,errSp) })
@@ -79,12 +81,14 @@ async function getRandom(event){
     .catch(err =>{console.log(`error~`,err)})
 
 
+
 //spanish api req below
     fetch(urlSp)
     .then(resSp => {return resSp.json()}) 
     .then(resSp => {
         console.log(resSp)
-       let spTranslation = document.getElementById(`sp-trans`)
+        let spTranslation = document.getElementById(`sp-trans`) 
+        spTranslation.innerText = ''
         spTranslation.innerText = `Spanish: 1. ${resSp[0].shortdef[0]} 2. ${resSp[1].shortdef[0]}`
     })
     .catch(errSp => {console.log(`error!`,errSp) })
