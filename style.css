@@ -1,4 +1,10 @@
+*{
+
+    font-family: 'Inconsolata', monospace;
+}
+
 body{
+    z-index: 0 ;
     background-color: #BFF1A7;
 }
 
@@ -50,16 +56,30 @@ body{
     }
 } 
 
-img {
-  float: left;
-  margin-top: 5px;
+#background{
+    position: absolute;
+    margin-left: 445px;
+    margin-bottom: 1000px;
+    width: 1000px;
+    height: 700px;
+    background-color: #E4B65A;
+    z-index: -1;
+    opacity: .6;
+    border-radius: 12px;
+}
+
+.logo {
+    position: absolute;
+  margin-top: 580px;
+  margin-left: 1325px;
 }
 
 h1{
-    font-size: 64px;
+    font-size: 60px;
     display: inline-block;
-    text-align: center;
-    margin-left: 450px;
+    /* text-align: center; */
+    color:#000000;
+    margin-left: 495px;
     margin-top: 50px; /* Add this */
 }
 
@@ -98,6 +118,16 @@ h1{
     margin-right: 16px;
 }
 
+#search-btn:hover{
+    background-color: #f3591b;
+    color: white;
+}
+
+#search-btn:active{
+    background-color: #f8d692;
+    color: rgb(218, 75, 75);
+}
+
 #random-btn{
     background-color: #FFB292;
     color: #BFF1A7;
@@ -111,11 +141,12 @@ h1{
     cursor: pointer;
     position: absolute;
     top: 68px;
+    right:880px
 }
 
-#search-btn:active{
-    background-color: #f8d692;
-    color: white;
+#random-btn:hover{
+    background-color: #01551d;
+    color: rgb(207, 205, 55);
 }
 
 #random-btn:active{
@@ -132,15 +163,15 @@ h1{
 }
 
 #definition-pop{
-    padding-top: 4px;
-    padding-left: 4px;
+    padding-top: 8px;
+    padding-left: 8px;
     font-weight: bold;
     background-color: rgb(252, 234, 177);
     border: 1px solid black;
     border-right: none;
     box-shadow: 2px 2px rgb(180, 180, 180);
     width: 350px;
-    height: 260px;
+    height: 276px;
     position: absolute;
     top: 120px;
     left: 590px;
@@ -155,7 +186,7 @@ h1{
     border-left: none;
     box-shadow: 2px 2px rgb(180, 180, 180);
     width: 350px;
-    height: 264px;
+    height: 284px;
     position: absolute;
     top: 120px;
     left: 940px;
@@ -166,10 +197,6 @@ h1{
     align-items: center;
 }
 
-.imgDef{
-    height: 240px;
-    width: 300px;
-}
 
 /* #hide-pop{
     display: block;

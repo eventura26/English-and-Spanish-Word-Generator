@@ -28,7 +28,7 @@ async function getData(event){
         wordSearched.innerText = ` English: ${res[0].hwi.hw} - ${res[0].fl}`
         wordDefined.innerText = `1: ${res[0].shortdef[0]}`
         secondDefinition.innerText = `2: ${res[2].shortdef[0]}`
-        imgBox.innerHTML = `<img src=${imgUrl} height='220px'>`
+        imgBox.innerHTML = `<img src=${imgUrl} height='270px' width="300px>`
         definitionPop.style.opacity = "1"
         imgBox.style.opacity = "1"
     })
@@ -46,11 +46,6 @@ async function getData(event){
     })
     .catch(errSp => {console.log(`error!`,errSp) })
 
-    saveBtn.addEventListener(`click`, () =>{ 
-        localStorage.setItem("word", textInput)
-        displayWordBank()
-    
-    })
 }
 
 // "random" word gen
@@ -58,10 +53,10 @@ async function getData(event){
 async function getRandom(event){
     let textInput = ''
     event.preventDefault()
-    let randomArr = [`sortie`, `photosynthesis`, `ferroelectric`,`developer`, `trademark`, `subcaliber`, `buffalo`, `argument`, `parameter`, `chicken`, `disc`, `hyperbole`, `assassin`, `grazed`, `wound`]
+    let randomArr = [`sortie`, `photosynthesis`, `triangle`,`developer`, `trademark`, `circle`, `buffalo`, `argument`, `parameter`, `chicken`, `disc`, `hyperbole`, `assassin`, `grazed`, `wound`, `radius`, `elephant`]
     let randomIndex = Math.floor(Math.random() * randomArr.length)
     console.log(randomArr[randomIndex])    
-    const imgUrl = `https://www.merriam-webster.com/assets/mw/static/art/dict/${textInput}.gif`
+    const imgUrl = `https://www.merriam-webster.com/assets/mw/static/art/dict/${randomArr[randomIndex]}.gif`
     const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${randomArr[randomIndex]}?key=${keyOne}`
     const urlSp = `https://www.dictionaryapi.com/api/v3/references/spanish/json/${randomArr[randomIndex]}?key=${keySp}`
   
@@ -73,7 +68,7 @@ async function getRandom(event){
         wordSearched.innerText = ` English: ${res[0].hwi.hw} - ${res[0].fl}`
         wordDefined.innerText = `1: ${res[0].shortdef[0]}`
         secondDefinition.innerText = `2: ${res[2].shortdef[0]}`
-        imgBox.innerHTML = `<img src=${imgUrl} height="200px" width="200px">`
+        imgBox.innerHTML = `<img src=${imgUrl} height="270px" width="300px">`
         definitionPop.style.opacity = "1"
         imgBox.style.opacity = "1"
         imgBox.addEventListener("error", function() {
@@ -93,21 +88,10 @@ async function getRandom(event){
         spTranslation.innerText = `Spanish: 1. ${resSp[0].shortdef[0]} 2. ${resSp[1].shortdef[0]}`
     })
     .catch(errSp => {console.log(`error!`,errSp) })
-
-    saveBtn.addEventListener(`click`, () =>{ 
-        localStorage.setItem("word", textInput)
-        displayWordBank()
-    
-    })
 }
 
-function displayWordBank(){
-    if(localStorage.getItem("word")){
-        const savedWord = localStorage.getItem("word")
-        wordBank.innerText = savedWord
-}}
 
-displayWordBank()
+
 
 searchBtn.onclick = getData
 randomBtn.onclick = getRandom
