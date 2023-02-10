@@ -8,8 +8,6 @@ body{
     background-color: #BFF1A7;
 }
 
-
-
 #background{
     position: absolute;
     margin-left: 445px;
@@ -151,11 +149,9 @@ h1{
     align-items: center;
 }
 
-
 /* #hide-pop{
     display: block;
 } */
-
 
 @media screen and (max-width: 1000px){
     h1{

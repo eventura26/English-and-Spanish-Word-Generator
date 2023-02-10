@@ -6,30 +6,35 @@ let wordBank = document.querySelector(`#word-bank`)
 let keyOne = "059db44f-08b8-4243-b66d-5379a06a78b5"
 let keySp = "e2b01471-48df-4301-8ab2-aee32aef513c"
 
-let textInput = ''
-let spTranslation = ''
-
 let wordSearched = document.getElementById(`word-searched`)
 let wordDefined = document.getElementById(`definition`)
 let secondDefinition = document.getElementById(`definition-two`)
 let imgBox = document.getElementById(`img-box`)
 
-
 async function getData(event){
     event.preventDefault() 
     textInput = document.querySelector(`#search-bar`).value
-    const imgUrl = `https://www.merriam-webster.com/assets/mw/static/art/dict/${textInput}.gif`
     const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${textInput}?key=${keyOne}`
     const urlSp = `https://www.dictionaryapi.com/api/v3/references/spanish/json/${textInput}?key=${keySp}`
   
     fetch(url)
     .then(res => {return res.json()})
+    
     .then(res =>{
+        const imgUrl = `https://www.merriam-webster.com/assets/mw/static/art/dict/${textInput}.gif`
+
         console.log(res)
+        console.log(textInput)
+        console.log(imgUrl)
         wordSearched.innerText = ` English: ${res[0].hwi.hw} - ${res[0].fl}`
-        wordDefined.innerText = `1: ${res[0].shortdef[0]}`
+        wordDefined.innerText = `1: ${res[0].shortdef[0]} `
+
+        secondDefinition.innerText = ''
         secondDefinition.innerText = `2: ${res[2].shortdef[0]}`
-        imgBox.innerHTML = `<img src=${imgUrl} height='270px' width="300px>`
+
+        imgBox.innerHTML = ''
+        imgBox.innerHTML = `<img src="${imgUrl}" height='270px' width="300px>`
+
         definitionPop.style.opacity = "1"
         imgBox.style.opacity = "1"
     })
@@ -53,24 +58,30 @@ async function getData(event){
 // "random" word gen
 
 async function getRandom(event){
-    let textInput = ''
     event.preventDefault()
-    let randomArr = [`sortie`, `photosynthesis`, `triangle`,`developer`, `trademark`, `circle`, `buffalo`, `argument`, `parameter`, `chicken`, `disc`, `hyperbole`, `assassin`, `grazed`, `wound`, `radius`, `elephant`]
+    let randomArr = [`sortie`, `photosynthesis`, `triangle`,`developer`, `trademark`, `circle`, `buffalo`, `argument`, `parameter`, `chicken`, `disc`, `hyperbole`, `assassin`, `grazed`, `wound`, `radius`, `elephant`, `triumph`, `cow`, `wings`, `bridge`, `flabbergasted`, `dice`, `canary`]
     let randomIndex = Math.floor(Math.random() * randomArr.length)
     console.log(randomArr[randomIndex])    
     const imgUrl = `https://www.merriam-webster.com/assets/mw/static/art/dict/${randomArr[randomIndex]}.gif`
     const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${randomArr[randomIndex]}?key=${keyOne}`
     const urlSp = `https://www.dictionaryapi.com/api/v3/references/spanish/json/${randomArr[randomIndex]}?key=${keySp}`
-  
+    
     fetch(url)
     .then(res => {return res.json()})
     .then(res =>{
       
         console.log(res)
+       
         wordSearched.innerText = ` English: ${res[0].hwi.hw} - ${res[0].fl}`
+       
         wordDefined.innerText = `1: ${res[0].shortdef[0]}`
+       
+        secondDefinition.innerText = ''
         secondDefinition.innerText = `2: ${res[2].shortdef[0]}`
+        
+        imgBox.innerHTML = ''
         imgBox.innerHTML = `<img src=${imgUrl} height="270px" width="300px">`
+       
         definitionPop.style.opacity = "1"
         imgBox.style.opacity = "1"
         imgBox.addEventListener("error", function() {
