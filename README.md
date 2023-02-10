@@ -22,4 +22,4 @@ A word search along with random word generator that provides an Spanish translat
 - dark mode
 - create a word bank, where someone can save their favorite words
 
-englishspaniswordgen.surge.sh
+- http://www.englishspanishlookup.surge.sh
